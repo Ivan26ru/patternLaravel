@@ -44,4 +44,24 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Варианты места работы
+     * @return string
+     */
+    public function departmentName(): string
+    {
+        $departments = [
+            'florist',
+            'logist',
+            'courierHiking',
+            'courierAuto',
+            'courierAutoNight',
+        ];
+
+        // случайным образом получаем где трудится
+        $key = array_rand($departments);
+
+        return $departments[$key];
+    }
 }
