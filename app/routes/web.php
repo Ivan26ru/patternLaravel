@@ -11,4 +11,5 @@ Route::controller(PatternController::class)
     ->prefix('patterns')
     ->group(function () {
         Route::get('/strategy', 'Strategy');
+        Route::get('/singleton', 'Singleton');
     });
