@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\DesignPattern\Dto;
 
+use App\DesignPattern\Dto\UseCase\CommandDTO;
+use App\DesignPattern\Dto\UseCase\UpdateClientUseCase;
 use App\Http\Controllers\Controller;
+use Barryvdh\Debugbar\Facades\Debugbar;
 use Illuminate\Http\Request;
 
 class DtoController extends Controller
@@ -14,16 +17,37 @@ class DtoController extends Controller
         return view('Dto.index');
     }
 
-    public function create(Request $request)
+    public function update(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
             'email' => 'required|email',
-            'age' => 'required|integer|min:0',
+            'age' => 'required',
         ]);
 
-        $dto = new UserDto($validated['name'], $validated['email'], $validated['age']);
-        session(['dto' => $dto]);
-        return redirect()->route('dto')->with('dto', (array)$dto);
+
+        Debugbar::info('Что ж ожидаю, что пользователь ввел возраст и как то получу его');
+
+        $useCase = new UpdateClientUseCase();
+
+        try {
+            $result = $useCase->__invoke(
+                new CommandDTO(
+                    $request['name'],
+                    $request['family'],
+                    $request['email'],
+                    (int)$request['age']
+                )
+            );
+
+
+            $responseBlade = [
+                'user'         => $result->name,
+                'applyUpdates' => $result->countUpdate
+            ];
+
+            return view('Dto.update', $responseBlade);
+        } catch (\Exception $e) {
+            return redirect()->route('dto.index')->withErrors([$e->getMessage()]);
+        }
     }
 }

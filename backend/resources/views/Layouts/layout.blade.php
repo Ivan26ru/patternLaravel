@@ -21,6 +21,24 @@
                 <p class="h1">iProject</p>
                 <p class="h2">Демонстрационный проект разных приемов программирования =)</p>
             </header>
+            @if(session('success'))
+                <hr>
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+
+            @if($errors->any())
+                <hr>
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <hr>
             <main class="mt-6">
                 @yield("content")

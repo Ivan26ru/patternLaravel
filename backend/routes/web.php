@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', \App\Http\Controllers\Page\Home\HomeController::class);
 
 // DTO
-Route::get('/dto', [DtoController::class, 'index']);
-Route::post('/dto/create', [DtoController::class, 'Create'])->name('dto.create');
+Route::get('/dto', [DtoController::class, 'index'])->name('dto.index');
+Route::post('/dto/create', [DtoController::class, 'update'])->name('dto.update');
 
 
 Route::controller(PatternController::class)
