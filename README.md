@@ -12,7 +12,7 @@ docker-compose up -d
 
 ### Debug
 ```
-PHP_IDE_CONFIG: serverName=DockerProject1
+PHP_IDE_CONFIG: serverName=patternlaravel
 ```
 
 ```bash
