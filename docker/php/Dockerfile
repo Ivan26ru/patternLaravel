@@ -1,6 +1,6 @@
 FROM php:8.3-fpm
 
-#RUN mkdir -p /var/www/backend
+RUN mkdir -p /var/www/backend
 
 WORKDIR /var/www/backend
 
@@ -69,7 +69,7 @@ RUN usermod -a -G www-data ${UNAME}
 COPY --from=composer:2.7.2 /usr/bin/composer /usr/bin/composer
 
 COPY ./backend .
-COPY ./entrypoint.sh /entrypoint.sh
+COPY ./docker/php/entrypoint.sh /entrypoint.sh
 
 USER ${UNAME}
 
