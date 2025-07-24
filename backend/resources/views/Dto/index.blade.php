@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-5">
     <h2>Демонстрация важности DTO: форма пользователя</h2>
-    <form method="POST" action="{{ route('dto.user') }}">
+    <form method="POST" action="{{ route('dto.create') }}">
         @csrf
         <div class="mb-3">
             <label for="name" class="form-label">Имя</label>
