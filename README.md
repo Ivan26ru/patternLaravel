@@ -17,7 +17,6 @@ PHP_IDE_CONFIG: serverName=patternlaravel
 
 ```bash
 php artisan key:generate
-touch app/database/database.sqlite
 php artisan migrate
 php artisan db:seed --class=DatabaseSeeder
 ```
