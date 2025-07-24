@@ -13,6 +13,7 @@ docker-compose up -d
 ### Debug
 ```
 PHP_IDE_CONFIG: serverName=patternlaravel
+mapping server: /var/www/backend
 ```
 
 ```bash
